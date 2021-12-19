@@ -17,8 +17,8 @@ public class BallGLEventListener implements GLEventListener {
   // right -> 7, 2, 5
 
   // left -> 6, 1, 4
-  private final int[] OPP_UP = {3, 4, 5};
-  private final int[] OPP_DOWN = {0, 1, 2};
+  private final int[] OPP_UP = {3, 4, 5}; //opposite of up (down-left, down, down-right)
+  private final int[] OPP_DOWN = {0, 1, 2}; //opp of right(...)
   private final int[] OPP_RIGHT = {2, 5, 7};
   private final int[] OPP_LEFT = {1, 4, 6};
 

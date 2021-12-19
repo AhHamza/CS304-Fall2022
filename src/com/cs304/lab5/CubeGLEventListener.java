@@ -105,13 +105,14 @@ public class CubeGLEventListener implements GLEventListener {
 
     gl.glColor3f(1, 0, 0);
 
-    gl.glPushMatrix();
+    gl.glPushMatrix(); //done only when calling (scale, translate, rotate)
 
     gl.glScaled(scaleXValue, scaleYValue, 1);
 
     gl.glTranslated(translateXValue, translateYValue, 0);
 
     gl.glRotated(rotateAngleValue, 0, 0, 1);
+
 
     gl.glBegin(GL.GL_POLYGON);
 

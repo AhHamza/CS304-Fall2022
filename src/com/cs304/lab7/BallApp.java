@@ -1,9 +1,11 @@
 package com.cs304.lab7;
 
+
 import com.sun.opengl.util.Animator;
-import java.awt.BorderLayout;
+
 import javax.media.opengl.GLCanvas;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class BallApp extends JFrame {
 

@@ -1,5 +1,7 @@
 package com.cs304.quiz2;
 
+import com.cs304.lab9.Example1.AnimGLEventListener3;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.media.opengl.GL;
@@ -18,6 +20,8 @@ public class WaveGLEventListener implements GLEventListener {
   private List<PointColor> pointColorList = new ArrayList<>();
   private int idx = 0;
 
+
+
   @Override
   public void init(GLAutoDrawable glAutoDrawable) {
     GL gl = glAutoDrawable.getGL();
@@ -27,16 +31,20 @@ public class WaveGLEventListener implements GLEventListener {
     gl.glMatrixMode(GL.GL_PROJECTION);
     gl.glLoadIdentity();
 
-    gl.glOrtho(X_MIN, X_MAX, Y_MIN, Y_MAX, -1.0, 1.0);
+    gl.glOrtho(X_MIN, X_MAX, Y_MIN, Y_MAX, -1.0, 1.0); // sets the the window of the JFrame and make it compatible with jCanvas
+    //    from 0 to 700 and from 0 to 500
 
+    // random numbers from 0 - 1
     float red = (float) Math.random();
     float green = (float) Math.random();
     float blue = (float) Math.random();
 
+    //iterates from 0 to 700 i.e. 70 times --> size of "pointColorList" is 70
     for (int x = X_MIN; x < X_MAX; x += 10) {
+     // put the same color in the list
+      pointColorList.add(new PointColor(red, green, blue)/*random color*/);
 
-      pointColorList.add(new PointColor(red, green, blue));
-
+      // every seven iterations change the color, so that there are 7 consequent circles with same color
       if (x % 70 == 0) {
         red = (float) Math.random();
         green = (float) Math.random();
@@ -48,24 +56,40 @@ public class WaveGLEventListener implements GLEventListener {
 
   @Override
   public void display(GLAutoDrawable glAutoDrawable) {
-
-    idx++;
-
-    idx %= pointColorList.size();
+//    idx++;
+    // when idx= 70 -> 70 % 70 =0
+//    idx %= pointColorList.size(); //to prevent index out of bounds when --> pointColorList.get(idx++));
+    if(idx == 0) {
+      idx = pointColorList.size() - 1;
+    }else {
+      idx--;
+    }
 
     GL gl = glAutoDrawable.getGL();
 
     gl.glClear(GL.GL_COLOR_BUFFER_BIT);
 
     gl.glBegin(GL.GL_POINTS);
-
+    /*Ask doctor why when we set the x= X_MAX to X_MIN it changed its direction*/
+//    for (int x = X_MAX; x >= X_MIN; x -= 10) {
     for (int x = X_MAX; x >= X_MIN; x -= 10) {
+
+      drawPointAndCircle(gl, x, (Y_MAX - Y_MIN) / 2 + (Math.sin(x / 60.0) * 100.0),
+              pointColorList.get(idx++));
+
+      idx %= pointColorList.size();
+    }
+    /*
+    * for (int x = X_MAX; x >= X_MIN; x -= 10) {
 
       drawPointAndCircle(gl, x, (Y_MAX - Y_MIN) / 2 + (Math.sin(x / 60.0) * 100.0),
           pointColorList.get(idx++));
 
       idx %= pointColorList.size();
     }
+    * */
+
+
 
     gl.glEnd();
   }
@@ -82,6 +106,7 @@ public class WaveGLEventListener implements GLEventListener {
 
   private void drawPointAndCircle(GL gl, double x, double y, PointColor pointColor) {
 
+    //Ask Doctor, why did we put gl.glBegin(GL.GL_POINTS) and     gl.glEnd(); ???
     gl.glBegin(GL.GL_POINTS);
 
     gl.glColor3f(pointColor.red, pointColor.green, pointColor.blue);
@@ -92,14 +117,18 @@ public class WaveGLEventListener implements GLEventListener {
 
     gl.glEnd();
   }
-
+  //at (x,y) draw a point
   private void drawPoint(GL gl, double x, double y) {
+
     gl.glVertex2d(x, y);
   }
 
+  //at (x,y) draw a circle
   private void drawCircle(GL gl, double x, double y) {
     for (double a = 0; a < THREE_SIXTY; a += ONE_DEGREE) {
-      double xx = x + RADIUS * (Math.cos(a));
+      /*Ask Doctor, why did we add x and y to the circle's coordinates*/
+      //ask him to draw and explain it on paint
+      double xx = x + RADIUS * (Math.cos(a)); // we add x to make cir
       double yy = y + RADIUS * (Math.sin(a));
       gl.glVertex2d(xx, yy);
     }

@@ -1,18 +1,17 @@
 package com.cs304.lab8;
 
-import java.awt.event.KeyEvent;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.event.KeyEvent;
 
 public class  GunGLEventListener implements GLEventListener {
 
-  private static final int MIN_X = 0;
+  private static final int  MIN_X = 0;
   private static final int MAX_X = 1700;
   private static final int MIN_Y = 0;
   private static final int MAX_Y = 900;
-                                    /*What is DI and DJ ??*/
   private static final int DI = 50; // no. of rows in the matrix
   private static final int DJ = 50; // no. of columns in the matrix
 
@@ -40,10 +39,9 @@ public class  GunGLEventListener implements GLEventListener {
     gl.glOrtho(MIN_X, MAX_X, MIN_Y, MAX_Y, -1.0, 1.0); //draw from this position
 
 
-    /* Ask Doc.!, what have we done here ? */
     // x and y positions of the gun
-    gunX = 2;
-    gunY = DJ / 2; // in the middle
+    gunX = 2; //second column
+    gunY = DJ / 2; // in the middle row
   }
 
   @Override
@@ -62,12 +60,13 @@ public class  GunGLEventListener implements GLEventListener {
     drawBullets(gl);
 
   }
-
+  // if bullet is at the required place, draw it
   private void drawBullets(GL gl) {
     for (int i = 0; i < DI; i++) {
       for (int j = 0; j < DJ; j++) {
+     // if there's a bullet in bullet[i][j]
         if (bullet[i][j] == 1) {
-          drawBullet(gl, i, j);
+          drawBullet(gl, i, j); //draw it
         }
       }
     }
@@ -80,6 +79,7 @@ public class  GunGLEventListener implements GLEventListener {
     gl.glVertex2i(convertX(x), convertY(y));
     gl.glEnd();
   }
+  // if enemies is at the required place, draw it
   private void drawEnemies(GL gl) {
     // 0=empty & 1=gun & (2= enemy)
     for (int i = 0; i < DI; i++) {
@@ -90,7 +90,8 @@ public class  GunGLEventListener implements GLEventListener {
       }
     }
   }
-  // Draws enemy
+
+  // Draws enemy at     gl.glVertex2i(convertX(x), convertY(y));
   private void drawEnemy(GL gl, int x, int y) {
     gl.glPointSize(30.0f);
     gl.glColor3f(0.0f, 1.0f, 0.0f);
@@ -98,7 +99,7 @@ public class  GunGLEventListener implements GLEventListener {
     gl.glVertex2i(convertX(x), convertY(y));
     gl.glEnd();
   }
-
+//draw gun at     gl.glVertex2i(convertX(gunX), convertY(gunY));
   private void drawGun(GL gl) {
     gl.glPointSize(20.0f);
     gl.glColor3f(0.0f, 0.0f, 1.0f);
@@ -132,8 +133,8 @@ public class  GunGLEventListener implements GLEventListener {
   private void resolveGunCollision() {
     for (int i = 0; i < DI; i++) {
       for (int j = 0; j < DJ; j++) {
-        for (int k = Math.max(0, j - GUN_MARGIN); k < Math.min(DJ, j + GUN_MARGIN + 1); k++) {
-          if (enemy[i][k] == 2 && i == gunX && k == gunY) {
+        for (int k = Math.max(0, j - GUN_MARGIN); k < Math.min(DJ, j + GUN_MARGIN + 1); k++) /*Margin*/{
+          if (enemy[i][k] == 2 && i == gunX /* x position of gun */ && k == gunY/* y position of gun */) {
             System.out.println("GameOver");
             JOptionPane.showMessageDialog(null, "GameOver.", "GameOver",
                 JOptionPane.WARNING_MESSAGE);
@@ -192,7 +193,6 @@ public class  GunGLEventListener implements GLEventListener {
   }
 
 
-  /*why did we convert X ???*/
   private int convertX(int x) {
     return x * MAX_X / DI;
   }

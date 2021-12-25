@@ -1,32 +1,31 @@
-package com.cs304.lab8;
+package com.cs304.GunsProject;
 
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.FPSAnimator;
 
-import java.awt.BorderLayout;
+import javax.media.opengl.GLCanvas;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.media.opengl.GLCanvas;
-import javax.swing.JFrame;
 
-public class GunApp extends JFrame implements KeyListener {
-
-    private Animator animator;
+public class GunsAndMonsters extends JFrame implements KeyListener {
+    private Animator animator1;
     private GLCanvas glcanvas;
-    private GunGLEventListener listener = new GunGLEventListener(); //we made this object so that we can call functions from GunGLEventListener
-
+    private AnimGLEventListenerSoldiersAndMonsters listener = new AnimGLEventListenerSoldiersAndMonsters(); //we made this object so that we can call functions from GunGLEventListener
     public static void main(String[] args) {
-        new GunApp().animator.start(); // activates the animator
+
+        new GunsAndMonsters().animator1.start(); // activates the animator
     }
 
-    public GunApp() {
+    public GunsAndMonsters() {
         super("Gun Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         glcanvas = new GLCanvas();
         glcanvas.addGLEventListener(listener);
-        animator = new FPSAnimator(10); // sets the time to when the function " display() " is called each time, each time we decrease the argument of the function the display() is called late
-        animator.add(glcanvas); // calls the display() repeatedly
+        animator1 = new FPSAnimator(10); // sets the time to when the function " display() " is called each time, each time we decrease the argument of the function the display() is called late
+        animator1.add(glcanvas); // calls the display() repeatedly
         glcanvas.addKeyListener(this); //keyListener listens to "glcanvas"
 
         add(glcanvas, BorderLayout.CENTER);

@@ -16,7 +16,8 @@ public class SimpleGLEventListener implements GLEventListener {
     gl.glMatrixMode(GL.GL_PROJECTION);
     gl.glLoadIdentity();
 
-    gl.glOrtho(0.0, 600.0, 0.0, 300.0, -1.0, 1.0);
+    gl.glOrtho(0.0, 600.0, 0.0, 300.0, -1.0, 1.0); //same as JFrame size  i.e.  setSize(600, 300);
+
   }
 
   @Override
@@ -92,7 +93,7 @@ public class SimpleGLEventListener implements GLEventListener {
     gl.glColor3f(1.0f, 0.0f, 0.0f);
 
     double radius = 90;
-    double ONE_DEGREE = (Math.PI / 180);
+    double ONE_DEGREE = (Math.PI / 1000);
     double THREE_SIXTY = 2 * Math.PI;
 
     gl.glBegin(GL.GL_LINES);

@@ -1,9 +1,7 @@
 package com.cs304.GunsProject;
 
-import com.cs304.lab9.AnimListener;
-import com.cs304.lab9.Texture.TextureReader;
+import AnimListener.AnimListener1;
 import com.sun.opengl.util.j2d.TextRenderer;
-
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
@@ -17,7 +15,7 @@ import java.util.BitSet;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class GunsAndMonstersListener extends AnimListener implements GLEventListener {
+public class GunsAndMonstersListener extends AnimListener1 implements GLEventListener {
     private static final int MIN_X = 0;
     private static final int MAX_X = 1700;
     private static final int MIN_Y = 0;

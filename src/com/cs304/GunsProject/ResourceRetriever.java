@@ -1,4 +1,4 @@
-package com.cs304.Texture;
+package com.cs304.GunsProject;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package com.cs304.GunsProject;
 
-import AnimListener.AnimListener1;
+import com.cs304.AnimListener1;
 import com.sun.opengl.util.j2d.TextRenderer;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;

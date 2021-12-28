@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 public class GunsAndMonsters extends JFrame implements KeyListener {
     private Animator animator1;
     private GLCanvas glcanvas;
-    private AnimGLEventListenerSoldiersAndMonsters listener = new AnimGLEventListenerSoldiersAndMonsters(); //we made this object so that we can call functions from GunGLEventListener
+    private GunsAndMonstersListener listener = new GunsAndMonstersListener(); //we made this object so that we can call functions from GunGLEventListener
     public static void main(String[] args) {
 
         new GunsAndMonsters().animator1.start(); // activates the animator
@@ -24,7 +24,7 @@ public class GunsAndMonsters extends JFrame implements KeyListener {
 
         glcanvas = new GLCanvas();
         glcanvas.addGLEventListener(listener);
-        animator1 = new FPSAnimator(10); // sets the time to when the function " display() " is called each time, each time we decrease the argument of the function the display() is called late
+        animator1 = new FPSAnimator(8); // sets the time to when the function " display() " is called each time, each time we decrease the argument of the function the display() is called late
         animator1.add(glcanvas); // calls the display() repeatedly
         glcanvas.addKeyListener(this); //keyListener listens to "glcanvas"
 

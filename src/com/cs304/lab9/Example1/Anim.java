@@ -10,22 +10,35 @@ package com.cs304.lab9.Example1;
 //package project;
 
 import com.cs304.lab9.AnimListener;
-import com.sun.opengl.util.*;
-import java.awt.*;
-import javax.media.opengl.*;
-import javax.swing.*;
+import com.sun.opengl.util.Animator;
+import com.sun.opengl.util.FPSAnimator;
 
-public class Anim extends JFrame {
+import javax.media.opengl.GLCanvas;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Anim extends  JFrame implements ActionListener, MouseMotionListener, MouseListener,
+        KeyListener {
+    JButton single, quit, high, back, normal, hard, multi, how, full,min;
+    CardLayout card = new CardLayout();
 
     public static void main(String[] args) {
         new Anim();
     }
 
-
     public Anim() {
         GLCanvas glcanvas;
         Animator animator;
-        
+        single = new JButton("single");
+        quit = new JButton("quit");
+        high = new JButton("high");
+        back = new JButton("back");
+        normal = new JButton("normal");
+        hard = new JButton();
+        multi = new JButton();
+        how = new JButton();
+        full = new JButton();
+        min = new JButton();
         AnimListener listener = new AnimGLEventListener3();
         glcanvas = new GLCanvas();
         glcanvas.addGLEventListener(listener);
@@ -42,5 +55,60 @@ public class Anim extends JFrame {
         setVisible(true);
         setFocusable(true);
         glcanvas.requestFocus();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
     }
 }

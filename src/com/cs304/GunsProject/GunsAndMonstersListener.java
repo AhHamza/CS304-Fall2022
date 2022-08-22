@@ -67,6 +67,8 @@ public class GunsAndMonstersListener extends AnimListener1 implements GLEventLis
         gl.glEnable(GL.GL_TEXTURE_2D);  // Enable Texture Mapping
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
         gl.glGenTextures(textureNames.length, textures, 0);
+//        gl.glOrtho(MIN_X, MAX_X, MIN_Y, MAX_Y, -1.0, 1.0); //draw from this position
+
 
         for (int i = 0; i < textureNames.length; i++) {
 
@@ -257,7 +259,6 @@ public class GunsAndMonstersListener extends AnimListener1 implements GLEventLis
                 // if there's a bullet in bullet[i][j]
                 if (bullet[i][j] == 1) {
                     drawBullet(gl, convertX(i), convertY(j), 1); //draw it
-                    System.out.println("ahmw=ed");
                 }
             }
         }
@@ -308,38 +309,13 @@ public class GunsAndMonstersListener extends AnimListener1 implements GLEventLis
 
     // Draws enemy at  gl.glVertex2i(convertX(x), convertY(y));
     public void drawEnemy(GL gl, int x, int y, int index, float scale) {
-//        gl.glEnable(GL.GL_BLEND);
-//        gl.glBindTexture(GL.GL_TEXTURE_2D, texturesG[index]);	// Turn Blending On
-//
-//        gl.glPushMatrix();
-//        gl.glTranslated( x/(MAX_X/2.0) - 0.9, y/(MAX_Y/2.0) - 0.9, 0);
-//        gl.glScaled(0.1*scale, 0.1*scale, 1);
-//        gl.glRotatef(-90, 0, 0, 1);
-//
-//        gl.glBegin(GL.GL_QUADS);
-//        // Front Face
-//        gl.glTexCoord2f(0.0f, 0.0f);
-//        gl.glVertex3f(-1.0f, -1.0f, -1.0f
-//        gl.glTexCoord2f(1.0f, 0.0f);
-//        gl.glVertex3f(1.0f, -1.0f, -1.0f);
-//        gl.glTexCoord2f(1.0f, 1.0f);
-//        gl.glVertex3f(1.0f, 1.0f, -1.0f);
-//        gl.glTexCoord2f(0.0f, 1.0f);
-//        gl.glVertex3f(-1.0f, 1.0f, -1.0f);
-//        gl.glEnd();
-//        gl.glPopMatrix();
-//
-//        gl.glDisable(GL.GL_BLEND);
-
         gl.glEnable(GL.GL_BLEND);
-        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);    // Turn Blending On
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);  // Turn Blending On
 
         gl.glPushMatrix();
         gl.glTranslated(x / (MAX_X / 2.0) - 0.9, y / (MAX_Y / 2.0) - 0.9, 0);
-
         gl.glScaled(0.1 * scale, 0.1 * scale, 1);
-        gl.glRotated(-90, 0, 0, 1);
-
+        //System.out.println(x +" " + y);
         gl.glBegin(GL.GL_QUADS);
         // Front Face
         gl.glTexCoord2f(0.0f, 0.0f);
@@ -354,6 +330,30 @@ public class GunsAndMonstersListener extends AnimListener1 implements GLEventLis
         gl.glPopMatrix();
 
         gl.glDisable(GL.GL_BLEND);
+
+//        gl.glEnable(GL.GL_BLEND);
+//        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);    // Turn Blending On
+//
+//        gl.glPushMatrix();
+//        gl.glTranslated(x / (MAX_X / 2.0) - 0.9, y / (MAX_Y / 2.0) - 0.9, 0);
+//
+//        gl.glScaled(0.1 * scale, 0.1 * scale, 1);
+//        gl.glRotated(-90, 0, 0, 1);
+//
+//        gl.glBegin(GL.GL_QUADS);
+//        // Front Face
+//        gl.glTexCoord2f(0.0f, 0.0f);
+//        gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+//        gl.glTexCoord2f(1.0f, 0.0f);
+//        gl.glVertex3f(1.0f, -1.0f, -1.0f);
+//        gl.glTexCoord2f(1.0f, 1.0f);
+//        gl.glVertex3f(1.0f, 1.0f, -1.0f);
+//        gl.glTexCoord2f(0.0f, 1.0f);
+//        gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+//        gl.glEnd();
+//        gl.glPopMatrix();
+//
+//        gl.glDisable(GL.GL_BLEND);
     }
 
     //draw gun at     gl.glVertex2i(convertX(gunX), convertY(gunY));
@@ -473,7 +473,6 @@ public class GunsAndMonstersListener extends AnimListener1 implements GLEventLis
                 if (enemy[i][j] == 2) {
                     enemy[i][j] = 0; // remove enemy from this position
                     enemy[i][j - 1] = 2; // move enemy to down
-                    System.out.println("this is enmis");
                 }
             }
         }
